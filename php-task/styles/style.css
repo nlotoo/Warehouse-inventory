@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-container {
+    display: flex;
+    height: 300px;
+    width: 300px;
+    border: 1px solid black;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-button {
+    margin-top: 30px;
+}
+
+.products-container {
+    height: 300px;
+    width: 500px;
+
+    border: 2px solid slateblue;
+}
+
