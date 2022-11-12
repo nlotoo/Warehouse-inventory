@@ -1,0 +1,26 @@
+.navigate .create-btn {
+    background-color: green;
+    border: 0;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    border-radius: 30px;
+
+}
+.table-container {
+    border: 1px solid black;
+}
+body {
+    padding: 50px;
+}
+
+.navigate {
+    margin-bottom: 30px;
+
+}
+
+.table-container .form {
+    display: flex;
+    width: 40%;
+}
+

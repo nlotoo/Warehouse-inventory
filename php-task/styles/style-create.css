@@ -1,0 +1,44 @@
+.div-form-container{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.form-container {
+    
+    margin-top: 30px;
+    display: flex;
+    height: 300px;
+    width: 300px;
+    border: 1px solid black;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.create-btn {
+    background-color: green;
+    border: 0;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    border-radius: 30px;
+    margin-bottom: 30px;
+}
+
+.add-button {
+    margin-top: 30px;
+}
+
+.products-container {
+    height: 300px;
+    width: 500px;
+
+    border: 2px solid slateblue;
+}
+
+.table {
+    padding: 40px;
+}
+

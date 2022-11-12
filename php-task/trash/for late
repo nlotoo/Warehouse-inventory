@@ -1,0 +1,52 @@
+   <!--Connection to db  // $dbname   = 'db-php-task';
+                // $username = 'root';
+                // $password = '';
+                // try {
+                //     $pdo = new \PDO("mysql:host=localhost;dbname=$dbname", $username,  $password);
+                // } catch (Exception $e) {
+                //     print $e->getMessage() . "\n";
+                // } -->
+
+
+   // echo '
+   <pre>';
+// var_dump($products);
+// echo '</pre>';
+
+   // Comparison function
+   function cmp($a, $b)
+   {
+   // echo '
+   <pre>';
+    // var_dump($a['name'], $b['name']);
+    // echo '</pre>';
+
+
+   if ($a['name'] > $b['name']) {
+   return $a;
+   }
+
+
+   // $save = $b;
+   // if ($a['name'] == $b['name']) {
+   // return 0;
+   // } else if (($a['name'] > $b['name'])) {
+   // return ($a > $b);
+   // }
+   }
+   uasort($products, 'cmp');
+
+
+
+
+
+   // function ASC($a, $b)
+   // {
+
+   // if ($a == $b) {
+   // return 0;
+   // }
+   // return ($a < $b) ? -1 : 1; // } // uasort($products, 'ASC' ); // Array to be sorted // $array=array('a'=> 4, 'b' => 8, 'c' => -1, 'd' => -9, 'e' => 2, 'f' => 5, 'g' => 3, 'h' => -4);
+       // print_r($array);
+       // Sort and print the resulting array
+       // print_r($products);
