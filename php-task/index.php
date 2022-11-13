@@ -95,7 +95,7 @@
                             <td><?= $row_in_DB['date']; ?></td>
                             <td>
                                 <form method="post" action="delete.php">
-                                    <input type="hidden" name="id" value="<?php echo $row['id_product'] ?>">
+                                    <input type="hidden" name="id" value="<?php echo $row_in_DB['id_product'] ?>">
                                     <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                 </form>
                             </td>
