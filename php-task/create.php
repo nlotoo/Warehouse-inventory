@@ -7,10 +7,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $weight = $_POST["weight"];
     $date = date('Y-m-d H:i:s');
 
-    $query = "INSERT INTO product (name, price, weight, date) VALUES ('$product','$price','$weight','$date')";
-    $con = mysqli_connect("localhost", "root", "", "db-php-task");
-    $query_run = mysqli_query($con, $query);
+    $sql = "CREATE DATABASE IF NOT EXISTS db_php_task;";
+    $con = mysqli_connect("localhost", "root", "");
 
+
+    if ($con->query($sql) !== true) {
+        echo "Error creating database: " . $con->error;
+    }
+    $con = mysqli_connect("localhost", "root", "", "db_php_task");
+
+    $sql = "CREATE TABLE IF NOT EXISTS product(
+            id_product INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(20),
+            price DECIMAL,
+            weight DECIMAL,
+            date DATETIME
+        );";
+
+    if ($con->query($sql) !== true) {
+        echo "Error creating table: " . $con->error;
+    }
+
+    $sql = "INSERT INTO product (name, price, weight, date) VALUES ('$product','$price','$weight','$date')";
+    if ($con->query($sql) !== true) {
+        echo "Error inserting into table: " . $con->error;
+    }
 }
 ?>
 
