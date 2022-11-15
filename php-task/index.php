@@ -1,28 +1,4 @@
-<?php
 
-
-if(mysqli_connect("localhost", "root", ""))
-{
-    if(!mysqli_connect("localhost", "root", "", "db_php_task"))
-    {
-        header("Location: create.php");
-    }
-    
-}
-
-
-
-//$sql = "CREATE DATABASE IF NOT EXISTS db_php_task;";
-//if($con->query($sql) !== true)
-//{
-//    echo "Error creating database!"; 
-//}
-//$con = mysqli_connect("localhost", "root", "", "db_php_task");
-//if ($con->connect_error) {
-//    /* Use your preferred error logging method here */
-//    header("Location: create.php");
-//}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,15 +26,27 @@ if(mysqli_connect("localhost", "root", ""))
         <form class="form" action="" method="GET">
             <select name="sort_condition" class="form-control">
                 <option value="">---Select Option ----</option>
-                <option value="a-z" <?php if (isset($_GET['sort_condition']) && $_GET['sort_condition']=="a-z") { echo
-                    "selected"; } ?>> A-Z(Ascending Order)</option>
-                <option value="z-a" <?php if (isset($_GET['sort_condition']) && $_GET['sort_condition']=="z-a") { echo
-                    "selected"; } ?>> Z-A(Descending Order)</option>
-                <option value="byDateASC" <?php if ( isset($_GET['sort_condition']) &&
-                    $_GET['sort_condition']=="byDateASC" ) { echo "selected"; } ?>> A-Z(Ascending Order by Date)
+                <option value="a-z" <?php if (isset($_GET['sort_condition']) && $_GET['sort_condition'] == "a-z") {
+                    echo
+                        "selected";
+                } ?>> A-Z(Ascending Order)</option>
+                <option value="z-a" <?php if (isset($_GET['sort_condition']) && $_GET['sort_condition'] == "z-a") {
+                    echo
+                        "selected";
+                } ?>> Z-A(Descending Order)</option>
+                <option value="byDateASC" <?php if (
+                    isset($_GET['sort_condition']) &&
+                    $_GET['sort_condition'] == "byDateASC"
+                ) {
+                    echo "selected";
+                } ?>> A-Z(Ascending Order by Date)
                 </option>
-                <option value="byDateDESC" <?php if ( isset($_GET['sort_condition']) &&
-                    $_GET['sort_condition']=="byDateDESC" ) { echo "selected"; } ?>> Z-A(Descending Order by Date)
+                <option value="byDateDESC" <?php if (
+                    isset($_GET['sort_condition']) &&
+                    $_GET['sort_condition'] == "byDateDESC"
+                ) {
+                    echo "selected";
+                } ?>> Z-A(Descending Order by Date)
                 </option>
             </select>
             <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">
@@ -80,19 +68,25 @@ if(mysqli_connect("localhost", "root", ""))
             <tbody>
                 <?php
                 $con = mysqli_connect("localhost", "root", "", "db_php_task");
+
+                if(!$con){
+                    header("Location: create.php");
+                
+                }
+
+
                 $query = "SELECT * FROM product";
                 $query_run = mysqli_query($con, $query);
-                if(!$query_run)
-                {
+                if (!$query_run) {
                     header("Location: create.php");
                 }
 
                 $array = array();
 
-                // if (mysqli_fetch_array($query_run) == false) {
-                //     throw new Exception("Data cannot be fetch");
-                // }
-
+                if (mysqli_fetch_array($query_run) == false) {
+                    throw new Exception("Data cannot be fetch");
+                }
+                
                 while ($row = mysqli_fetch_array($query_run)) {
                     $array[] = $row;
                 }

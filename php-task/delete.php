@@ -7,8 +7,7 @@ if (!$id) {
 }
 
 $query = "DELETE FROM product WHERE id_product='$id'";
-$con = mysqli_connect("localhost", "root", "", "db-php-task");
+$con = mysqli_connect("localhost", "root", "", "db_php_task");
 $query_run = mysqli_query($con, $query);
-
 
 header('Location:index.php');
