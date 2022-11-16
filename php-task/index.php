@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,13 +18,12 @@
 <body>
 
     <div class="navigate">
-        <a class="create-btn" href="create.php"> Create new record</a>
+        <a class="create-btn" href="form.php"> Create new record</a>
     </div>
 
     <div class="table-container">
         <form class="form" action="" method="GET">
             <select name="sort_condition" class="form-control">
-                <option value="">---Select Option ----</option>
                 <option value="a-z" <?php if (isset($_GET['sort_condition']) && $_GET['sort_condition'] == "a-z") {
                     echo
                         "selected";
@@ -67,124 +65,9 @@
 
             <tbody>
                 <?php
-                $con = mysqli_connect("localhost", "root", "", "db_php_task");
-
-                if(!$con){
-                    header("Location: create.php");
-                
-                }
-
-
-                $query = "SELECT * FROM product";
-                $query_run = mysqli_query($con, $query);
-                if (!$query_run) {
-                    header("Location: create.php");
-                }
-
-                $array = array();
-
-                if (mysqli_fetch_array($query_run) == false) {
-                    throw new Exception("Data cannot be fetch");
-                }
-                
-                while ($row = mysqli_fetch_array($query_run)) {
-                    $array[] = $row;
-                }
-
-
-                if (isset($_GET['sort_condition'])) {
-                    if ($_GET['sort_condition'] == "a-z") {
-
-
-                        usort($array, build_sorter_name_A('name'));
-                    } elseif ($_GET['sort_condition'] == "z-a") {
-
-
-                        usort($array, build_sorter_name_D('name'));
-                    } elseif ($_GET['sort_condition'] == "byDateASC") {
-
-
-                        usort($array, build_sorter_date_A('date'));
-                    } elseif ($_GET['sort_condition'] == "byDateDESC") {
-
-
-                        usort($array, build_sorter_date_D('date'));
-                    } elseif ($_GET['sort_condition'] == "") {
-
-
-                        usort($array, build_sorter_name_A('name'));
-                    }
-                }
-
-                if (sizeof($array) > -1) {
-                    foreach ($array as $row_in_DB) {
-
+                include 'sorting_table.php';
                 ?>
-                <tr>
-
-                    <td>
-                        <?php echo $row_in_DB['name']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row_in_DB['price']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row_in_DB['weight']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row_in_DB['date']; ?>
-                    </td>
-                    <td>
-                        <form method="post" action="delete.php">
-                            <input type="hidden" name="id" value="<?php echo $row_in_DB['id_product'] ?>">
-                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-
-
-
-                <?php
-                    }
-                } else {
-                ?>
-                <tr>
-                    <td>NO RESULT IN DB</td>
-                </tr>
-
-                <?php
-
-                }
-
-                function build_sorter_date_A($key)
-                {
-                    return function ($a, $b) use ($key) {
-                        return strnatcmp($a[$key], $b[$key]);
-                    };
-                }
-
-                function build_sorter_date_D($key)
-                {
-                    return function ($a, $b) use ($key) {
-                        return strnatcmp($b[$key], $a[$key]);
-                    };
-                }
-
-                function build_sorter_name_A($key)
-                {
-                    return function ($a, $b) use ($key) {
-                        return strnatcmp($a[$key], $b[$key]);
-                    };
-                }
-
-                function build_sorter_name_D($key)
-                {
-                    return function ($a, $b) use ($key) {
-                        return strnatcmp($b[$key], $a[$key]);
-                    };
-                }
-
-                ?>
+               
             </tbody>
         </table>
     </div>
